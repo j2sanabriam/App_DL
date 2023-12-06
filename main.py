@@ -7,6 +7,8 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import torch
+import requests
+import os
 
 # carga modelo de clasificación streamlit
 if not os.path.exists("models/clf_model.h5"):
