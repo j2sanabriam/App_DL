@@ -6,3 +6,4 @@ matplotlib
 tensorflow
 torch
 requests
+ultralytics
