@@ -8,7 +8,12 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import torch
 
-
+# carga modelo de clasificación streamlit
+if not os.path.exists("models/clf_model.h5"):
+    model_clsf_path = 'https://github.com/j2sanabriam/Proyecto_DL/blob/16ef8c600adf08b3ed55e2a50b2cb5a7485f1a2a/App/models/clf_model.h5?raw=true'
+    response = requests.get(model_clsf_path)
+    with open("models/clf_model.h5", "wb") as file:
+        file.write(response.content)
 
 st.set_page_config(page_title="TechScan NN", layout="wide")
 # st.title("TechScan NN \n Reconocimiento de Texto en Imágenes de Equipos Eléctricos")
@@ -35,7 +40,7 @@ if not st.session_state['file']:
     # MODELO CLASIFICACIÓN
 
         # Ejecución página streamlit
-        model_clsf = tf.keras.models.load_model("models/postes_320_320.h5")
+        model_clsf = tf.keras.models.load_model("models/clf_model.h5")
 
         # Cargar y preparar la imagen
         img = image.load_img(uploaded_photo, target_size=(128, 128), color_mode='grayscale')
